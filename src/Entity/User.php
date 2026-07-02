@@ -41,7 +41,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank(message: 'Le champ Mot de passe ne peut pas être vide')]
     #[Assert\Regex(
         pattern: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).+$/',
         message: "Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial."
