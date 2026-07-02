@@ -37,7 +37,7 @@ class Utilisateur implements UserInterface
     private ?string $email_utilisateur = null;
 
     /*
-     * @var string The hashed password *
+     * @var string The hashed password
      */
 
     #[ORM\Column(length: 50)]
