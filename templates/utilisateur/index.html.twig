@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur index{% endblock %}
+
+{% block body %}
+    <h1>Utilisateur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pseudo_utilisateur</th>
+                <th>Email_utilisateur</th>
+                <th>Motdepasse_utilisateur</th>
+                <th>Nom_utilisateur</th>
+                <th>Prenom_utilisateur</th>
+                <th>Adresse_utilisateur</th>
+                <th>Codepostal_utilisateur</th>
+                <th>Ville_utilisateur</th>
+                <th>Icone_utilisateur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for utilisateur in utilisateurs %}
+            <tr>
+                <td>{{ utilisateur.id }}</td>
+                <td>{{ utilisateur.pseudoUtilisateur }}</td>
+                <td>{{ utilisateur.emailUtilisateur }}</td>
+                <td>{{ utilisateur.motdepasseUtilisateur }}</td>
+                <td>{{ utilisateur.nomUtilisateur }}</td>
+                <td>{{ utilisateur.prenomUtilisateur }}</td>
+                <td>{{ utilisateur.adresseUtilisateur }}</td>
+                <td>{{ utilisateur.codepostalUtilisateur }}</td>
+                <td>{{ utilisateur.villeUtilisateur }}</td>
+                <td>{{ utilisateur.iconeUtilisateur }}</td>
+                <td>
+                    <a href="{{ path('app_utilisateur_show', {'id': utilisateur.id}) }}">show</a>
+                    <a href="{{ path('app_utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_utilisateur_new') }}">Create new</a>
+{% endblock %}
