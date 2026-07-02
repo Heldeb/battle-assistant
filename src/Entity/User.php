@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -32,6 +33,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $user_town = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $user_icon = null;
 
     public function getId(): ?int
     {
@@ -106,5 +116,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $data["\0".self::class."\0password"] = hash('crc32c', $this->password);
 
         return $data;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getUserTown(): ?string
+    {
+        return $this->user_town;
+    }
+
+    public function setUserTown(string $user_town): static
+    {
+        $this->user_town = $user_town;
+
+        return $this;
+    }
+
+    public function getUserIcon(): ?string
+    {
+        return $this->user_icon;
+    }
+
+    public function setUserIcon(string $user_icon): static
+    {
+        $this->user_icon = $user_icon;
+
+        return $this;
     }
 }
