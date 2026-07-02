@@ -35,12 +35,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Le champ ne peut pas être vide')]
     private ?string $password = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Le champ ne peut pas être vide')]
     private ?string $email = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Le champ ne peut pas être vide')]
     private ?string $user_town = null;
 
     #[ORM\Column(type: Types::TEXT)]
