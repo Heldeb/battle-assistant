@@ -49,14 +49,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 100)]
-    #[Assert\NotBlank(message: 'Le champ ne peut pas être vide')]
     #[Assert\Email(
         message: "L\'adresse renseignée {{ value }} n'est pas valide.",
     )]
     private ?string $email = null;
 
     #[ORM\Column(length: 100)]
-    #[Assert\NotBlank(message: 'Le champ ne peut pas être vide')]
     private ?string $user_town = null;
 
     #[ORM\Column(type: Types::TEXT)]
