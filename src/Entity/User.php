@@ -23,6 +23,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180)]
     #[Assert\NotBlank(message: 'Le champ ne peut pas être vide')]
+    #[Assert\Length(
+        min: 3,
+        max: 50,
+        minMessage: "Le pseudo doit contenir au moins {{ limit }} caractères",
+        maxMessage: "Le pseudo ne peut pas dépasser {{ limit }} caractères"
+    )]
     private ?string $username = null;
 
     /**
@@ -36,10 +42,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Le champ ne peut pas être vide')]
+    #[Assert\Regex(
+        pattern: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).+$/',
+        message: "Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial."
+    )]
     private ?string $password = null;
 
     #[ORM\Column(length: 100)]
     #[Assert\NotBlank(message: 'Le champ ne peut pas être vide')]
+    #[Assert\Email(
+        message: "L\'adresse renseignée {{ value }} n'est pas valide.",
+    )]
     private ?string $email = null;
 
     #[ORM\Column(length: 100)]
