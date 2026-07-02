@@ -22,7 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    #[Assert\NotBlank(message: 'Le champ ne peut pas être vide')]
+    #[Assert\NotBlank(message: 'Le champ Pseudo ne peut pas être vide')]
     #[Assert\Length(
         min: 3,
         max: 50,
@@ -41,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank(message: 'Le champ ne peut pas être vide')]
+    #[Assert\NotBlank(message: 'Le champ Mot de passe ne peut pas être vide')]
     #[Assert\Regex(
         pattern: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).+$/',
         message: "Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial."
