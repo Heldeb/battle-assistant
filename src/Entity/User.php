@@ -67,23 +67,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: PlayedGames::class, mappedBy: 'User')]
     private Collection $playedGames;
 
-    /**
-     * @var Collection<int, Event>
-     */
-    #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'organisation')]
-    private Collection $organisation;
-
-    /**
-     * @var Collection<int, Event>
-     */
-    #[ORM\ManyToMany(targetEntity: Event::class, mappedBy: 'organization')]
-    private Collection $organization;
-
     public function __construct()
     {
         $this->playedGames = new ArrayCollection();
-        $this->organisation = new ArrayCollection();
-        $this->organization = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -222,63 +208,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($playedGame->getUser() === $this) {
                 $playedGame->setUser(null);
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Event>
-     */
-    public function getOrganisation(): Collection
-    {
-        return $this->organisation;
-    }
-
-    public function addOrganisation(Event $organisation): static
-    {
-        if (!$this->organisation->contains($organisation)) {
-            $this->organisation->add($organisation);
-            $organisation->setOrganisation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrganisation(Event $organisation): static
-    {
-        if ($this->organisation->removeElement($organisation)) {
-            // set the owning side to null (unless already changed)
-            if ($organisation->getOrganisation() === $this) {
-                $organisation->setOrganisation(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Event>
-     */
-    public function getOrganization(): Collection
-    {
-        return $this->organization;
-    }
-
-    public function addOrganization(Event $organization): static
-    {
-        if (!$this->organization->contains($organization)) {
-            $this->organization->add($organization);
-            $organization->addOrganization($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrganization(Event $organization): static
-    {
-        if ($this->organization->removeElement($organization)) {
-            $organization->removeOrganization($this);
         }
 
         return $this;
