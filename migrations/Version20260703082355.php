@@ -21,14 +21,12 @@ final class Version20260703082355 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE scenario (id INT AUTO_INCREMENT NOT NULL, scenario_name VARCHAR(50) NOT NULL, medal_count SMALLINT NOT NULL, historical_description LONGTEXT NOT NULL, PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4');
-        $this->addSql('DROP TABLE utilisateur');
         $this->addSql('ALTER TABLE user CHANGE email email VARCHAR(100) NOT NULL, CHANGE user_town user_town VARCHAR(100) NOT NULL, CHANGE user_icon user_icon LONGTEXT NOT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE utilisateur (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(100) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_0900_ai_ci`, user_town VARCHAR(100) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_0900_ai_ci`, user_icon LONGTEXT CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_0900_ai_ci`, PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_0900_ai_ci` ENGINE = MyISAM COMMENT = \'\' ');
         $this->addSql('DROP TABLE scenario');
         $this->addSql('ALTER TABLE user CHANGE email email VARCHAR(100) DEFAULT NULL, CHANGE user_town user_town VARCHAR(100) DEFAULT NULL, CHANGE user_icon user_icon LONGTEXT DEFAULT NULL');
     }

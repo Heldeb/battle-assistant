@@ -20,14 +20,12 @@ final class Version20260702095759 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE utilisateur (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(100) NOT NULL, user_town VARCHAR(100) NOT NULL, user_icon LONGTEXT DEFAULT NULL, PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4');
         $this->addSql('ALTER TABLE user ADD email VARCHAR(100) NOT NULL, ADD user_town VARCHAR(100) NOT NULL, ADD user_icon LONGTEXT NOT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE utilisateur');
         $this->addSql('ALTER TABLE user DROP email, DROP user_town, DROP user_icon');
     }
 }
