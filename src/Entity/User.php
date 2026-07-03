@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -60,17 +58,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $user_icon = null;
-
-    /**
-     * @var Collection<int, Scenario>
-     */
-    #[ORM\ManyToMany(targetEntity: Scenario::class, mappedBy: 'PlayedGames')]
-    private Collection $scenarios;
-
-    public function __construct()
-    {
-        $this->scenarios = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -179,33 +166,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUserIcon(string $user_icon): static
     {
         $this->user_icon = $user_icon;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Scenario>
-     */
-    public function getScenarios(): Collection
-    {
-        return $this->scenarios;
-    }
-
-    public function addScenario(Scenario $scenario): static
-    {
-        if (!$this->scenarios->contains($scenario)) {
-            $this->scenarios->add($scenario);
-            $scenario->addPlayedGame($this);
-        }
-
-        return $this;
-    }
-
-    public function removeScenario(Scenario $scenario): static
-    {
-        if ($this->scenarios->removeElement($scenario)) {
-            $scenario->removePlayedGame($this);
-        }
 
         return $this;
     }
