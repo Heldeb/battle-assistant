@@ -42,6 +42,9 @@ class Component
     #[ORM\Column(type: Types::TEXT)]
     private ?string $component_icon = null;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $side = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -151,6 +154,18 @@ class Component
     public function setComponentIcon(string $component_icon): static
     {
         $this->component_icon = $component_icon;
+
+        return $this;
+    }
+
+    public function getSide(): ?string
+    {
+        return $this->side;
+    }
+
+    public function setSide(?string $side): static
+    {
+        $this->side = $side;
 
         return $this;
     }
