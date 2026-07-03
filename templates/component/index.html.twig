@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Component index{% endblock %}
+
+{% block body %}
+    <h1>Component index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Component_name</th>
+                <th>Component_type</th>
+                <th>Subcategory</th>
+                <th>Movement_rules</th>
+                <th>Attack_rules</th>
+                <th>Protection_rules</th>
+                <th>Line_of_sight_rules</th>
+                <th>Component_icon</th>
+                <th>Side</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for component in components %}
+            <tr>
+                <td>{{ component.id }}</td>
+                <td>{{ component.componentName }}</td>
+                <td>{{ component.componentType }}</td>
+                <td>{{ component.subcategory }}</td>
+                <td>{{ component.movementRules }}</td>
+                <td>{{ component.attackRules }}</td>
+                <td>{{ component.protectionRules }}</td>
+                <td>{{ component.lineOfSightRules }}</td>
+                <td>{{ component.componentIcon }}</td>
+                <td>{{ component.side }}</td>
+                <td>
+                    <a href="{{ path('app_component_show', {'id': component.id}) }}">show</a>
+                    <a href="{{ path('app_component_edit', {'id': component.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_component_new') }}">Create new</a>
+{% endblock %}
