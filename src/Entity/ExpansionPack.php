@@ -24,9 +24,16 @@ class ExpansionPack
     #[ORM\OneToMany(targetEntity: Scenario::class, mappedBy: 'expansionPack')]
     private Collection $scenario;
 
+    /**
+     * @var Collection<int, Component>
+     */
+    #[ORM\OneToMany(targetEntity: Component::class, mappedBy: 'expansion_pack')]
+    private Collection $components;
+
     public function __construct()
     {
         $this->scenario = new ArrayCollection();
+        $this->components = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,6 +77,36 @@ class ExpansionPack
             // set the owning side to null (unless already changed)
             if ($scenario->getExpansionPack() === $this) {
                 $scenario->setExpansionPack(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Component>
+     */
+    public function getComponents(): Collection
+    {
+        return $this->components;
+    }
+
+    public function addComponent(Component $component): static
+    {
+        if (!$this->components->contains($component)) {
+            $this->components->add($component);
+            $component->setExpansionPack($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComponent(Component $component): static
+    {
+        if ($this->components->removeElement($component)) {
+            // set the owning side to null (unless already changed)
+            if ($component->getExpansionPack() === $this) {
+                $component->setExpansionPack(null);
             }
         }
 

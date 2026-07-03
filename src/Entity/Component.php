@@ -19,6 +19,10 @@ class Component
     #[ORM\Column(length: 50)]
     private ?string $component_type = null;
 
+    #[ORM\ManyToOne(inversedBy: 'components')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?ExpansionPack $expansion_pack = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +48,18 @@ class Component
     public function setComponentType(string $component_type): static
     {
         $this->component_type = $component_type;
+
+        return $this;
+    }
+
+    public function getExpansionPack(): ?ExpansionPack
+    {
+        return $this->expansion_pack;
+    }
+
+    public function setExpansionPack(?ExpansionPack $expansion_pack): static
+    {
+        $this->expansion_pack = $expansion_pack;
 
         return $this;
     }
