@@ -35,6 +35,10 @@ class Scenario
     #[ORM\JoinColumn(nullable: false)]
     private ?ExpansionPack $expansionPack = null;
 
+    #[ORM\ManyToOne(inversedBy: 'scenario')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Battlefield $battlefield = null;
+
     public function __construct()
     {
         $this->playedGames = new ArrayCollection();
@@ -119,6 +123,18 @@ class Scenario
     public function setExpansionPack(?ExpansionPack $expansionPack): static
     {
         $this->expansionPack = $expansionPack;
+
+        return $this;
+    }
+
+    public function getBattlefield(): ?Battlefield
+    {
+        return $this->battlefield;
+    }
+
+    public function setBattlefield(?Battlefield $battlefield): static
+    {
+        $this->battlefield = $battlefield;
 
         return $this;
     }

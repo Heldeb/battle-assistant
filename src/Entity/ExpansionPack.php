@@ -30,10 +30,17 @@ class ExpansionPack
     #[ORM\OneToMany(targetEntity: Component::class, mappedBy: 'expansion_pack')]
     private Collection $components;
 
+    /**
+     * @var Collection<int, Battlefield>
+     */
+    #[ORM\OneToMany(targetEntity: Battlefield::class, mappedBy: 'expansion_pack')]
+    private Collection $battlefields;
+
     public function __construct()
     {
         $this->scenario = new ArrayCollection();
         $this->components = new ArrayCollection();
+        $this->battlefields = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,6 +114,36 @@ class ExpansionPack
             // set the owning side to null (unless already changed)
             if ($component->getExpansionPack() === $this) {
                 $component->setExpansionPack(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Battlefield>
+     */
+    public function getBattlefields(): Collection
+    {
+        return $this->battlefields;
+    }
+
+    public function addBattlefield(Battlefield $battlefield): static
+    {
+        if (!$this->battlefields->contains($battlefield)) {
+            $this->battlefields->add($battlefield);
+            $battlefield->setExpansionPack($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBattlefield(Battlefield $battlefield): static
+    {
+        if ($this->battlefields->removeElement($battlefield)) {
+            // set the owning side to null (unless already changed)
+            if ($battlefield->getExpansionPack() === $this) {
+                $battlefield->setExpansionPack(null);
             }
         }
 
