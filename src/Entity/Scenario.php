@@ -31,6 +31,10 @@ class Scenario
     #[ORM\OneToMany(targetEntity: PlayedGames::class, mappedBy: 'Scenario')]
     private Collection $playedGames;
 
+    #[ORM\ManyToOne(inversedBy: 'scenario')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?ExpansionPack $expansionPack = null;
+
     public function __construct()
     {
         $this->playedGames = new ArrayCollection();
@@ -103,6 +107,18 @@ class Scenario
                 $playedGame->setScenario(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getExpansionPack(): ?ExpansionPack
+    {
+        return $this->expansionPack;
+    }
+
+    public function setExpansionPack(?ExpansionPack $expansionPack): static
+    {
+        $this->expansionPack = $expansionPack;
 
         return $this;
     }
