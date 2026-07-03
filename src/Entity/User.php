@@ -67,6 +67,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: PlayedGames::class, mappedBy: 'User')]
     private Collection $playedGames;
 
+    #[ORM\ManyToOne(inversedBy: 'organization')]
+    private ?Event $event = null;
+
     public function __construct()
     {
         $this->playedGames = new ArrayCollection();
@@ -209,6 +212,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $playedGame->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?Event $event): static
+    {
+        $this->event = $event;
 
         return $this;
     }
