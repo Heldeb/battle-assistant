@@ -40,9 +40,16 @@ class Event
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'event')]
     private Collection $organization;
 
+    /**
+     * @var Collection<int, Registration>
+     */
+    #[ORM\OneToMany(targetEntity: Registration::class, mappedBy: 'Event')]
+    private Collection $registrations;
+
     public function __construct()
     {
         $this->organization = new ArrayCollection();
+        $this->registrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,6 +153,36 @@ class Event
             // set the owning side to null (unless already changed)
             if ($organization->getEvent() === $this) {
                 $organization->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Registration>
+     */
+    public function getRegistrations(): Collection
+    {
+        return $this->registrations;
+    }
+
+    public function addRegistration(Registration $registration): static
+    {
+        if (!$this->registrations->contains($registration)) {
+            $this->registrations->add($registration);
+            $registration->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRegistration(Registration $registration): static
+    {
+        if ($this->registrations->removeElement($registration)) {
+            // set the owning side to null (unless already changed)
+            if ($registration->getEvent() === $this) {
+                $registration->setEvent(null);
             }
         }
 
