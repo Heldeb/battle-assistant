@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -58,6 +60,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $user_icon = null;
+
+    /**
+     * @var Collection<int, PlayedGames>
+     */
+    #[ORM\OneToMany(targetEntity: PlayedGames::class, mappedBy: 'User')]
+    private Collection $playedGames;
+
+    public function __construct()
+    {
+        $this->playedGames = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -166,6 +179,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUserIcon(string $user_icon): static
     {
         $this->user_icon = $user_icon;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlayedGames>
+     */
+    public function getPlayedGames(): Collection
+    {
+        return $this->playedGames;
+    }
+
+    public function addPlayedGame(PlayedGames $playedGame): static
+    {
+        if (!$this->playedGames->contains($playedGame)) {
+            $this->playedGames->add($playedGame);
+            $playedGame->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayedGame(PlayedGames $playedGame): static
+    {
+        if ($this->playedGames->removeElement($playedGame)) {
+            // set the owning side to null (unless already changed)
+            if ($playedGame->getUser() === $this) {
+                $playedGame->setUser(null);
+            }
+        }
 
         return $this;
     }
