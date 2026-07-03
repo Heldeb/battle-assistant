@@ -28,9 +28,16 @@ class Battlefield
     #[ORM\OneToMany(targetEntity: Scenario::class, mappedBy: 'battlefield')]
     private Collection $scenario;
 
+    /**
+     * @var Collection<int, Component>
+     */
+    #[ORM\ManyToMany(targetEntity: Component::class, inversedBy: 'battlefields')]
+    private Collection $component;
+
     public function __construct()
     {
         $this->scenario = new ArrayCollection();
+        $this->component = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -88,6 +95,30 @@ class Battlefield
                 $scenario->setBattlefield(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Component>
+     */
+    public function getComponent(): Collection
+    {
+        return $this->component;
+    }
+
+    public function addComponent(Component $component): static
+    {
+        if (!$this->component->contains($component)) {
+            $this->component->add($component);
+        }
+
+        return $this;
+    }
+
+    public function removeComponent(Component $component): static
+    {
+        $this->component->removeElement($component);
 
         return $this;
     }

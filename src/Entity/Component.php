@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ComponentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -44,6 +46,17 @@ class Component
 
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $side = null;
+
+    /**
+     * @var Collection<int, Battlefield>
+     */
+    #[ORM\ManyToMany(targetEntity: Battlefield::class, mappedBy: 'component')]
+    private Collection $battlefields;
+
+    public function __construct()
+    {
+        $this->battlefields = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -166,6 +179,33 @@ class Component
     public function setSide(?string $side): static
     {
         $this->side = $side;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Battlefield>
+     */
+    public function getBattlefields(): Collection
+    {
+        return $this->battlefields;
+    }
+
+    public function addBattlefield(Battlefield $battlefield): static
+    {
+        if (!$this->battlefields->contains($battlefield)) {
+            $this->battlefields->add($battlefield);
+            $battlefield->addComponent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBattlefield(Battlefield $battlefield): static
+    {
+        if ($this->battlefields->removeElement($battlefield)) {
+            $battlefield->removeComponent($this);
+        }
 
         return $this;
     }
