@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ExpansionPack{% endblock %}
+
+{% block body %}
+    <h1>ExpansionPack</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ expansion_pack.id }}</td>
+            </tr>
+            <tr>
+                <th>Expansion_pack_name</th>
+                <td>{{ expansion_pack.expansionPackName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_expansion_pack_index') }}">back to list</a>
+
+    <a href="{{ path('app_expansion_pack_edit', {'id': expansion_pack.id}) }}">edit</a>
+
+    {{ include('expansion_pack/_delete_form.html.twig') }}
+{% endblock %}

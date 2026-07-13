@@ -53,6 +53,9 @@ class Component
     #[ORM\ManyToMany(targetEntity: Battlefield::class, mappedBy: 'component')]
     private Collection $battlefields;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $Description = null;
+
     public function __construct()
     {
         $this->battlefields = new ArrayCollection();
@@ -206,6 +209,18 @@ class Component
         if ($this->battlefields->removeElement($battlefield)) {
             $battlefield->removeComponent($this);
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->Description;
+    }
+
+    public function setDescription(?string $Description): static
+    {
+        $this->Description = $Description;
 
         return $this;
     }
