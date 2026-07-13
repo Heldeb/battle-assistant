@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Component{% endblock %}
+
+{% block body %}
+    <h1>Component</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ component.id }}</td>
+            </tr>
+            <tr>
+                <th>Component_name</th>
+                <td>{{ component.componentName }}</td>
+            </tr>
+            <tr>
+                <th>Component_type</th>
+                <td>{{ component.componentType }}</td>
+            </tr>
+            <tr>
+                <th>Subcategory</th>
+                <td>{{ component.subcategory }}</td>
+            </tr>
+            <tr>
+                <th>Movement_rules</th>
+                <td>{{ component.movementRules }}</td>
+            </tr>
+            <tr>
+                <th>Attack_rules</th>
+                <td>{{ component.attackRules }}</td>
+            </tr>
+            <tr>
+                <th>Protection_rules</th>
+                <td>{{ component.protectionRules }}</td>
+            </tr>
+            <tr>
+                <th>Line_of_sight_rules</th>
+                <td>{{ component.lineOfSightRules }}</td>
+            </tr>
+            <tr>
+                <th>Component_icon</th>
+                <td>{{ component.componentIcon }}</td>
+            </tr>
+            <tr>
+                <th>Side</th>
+                <td>{{ component.side }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ component.Description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_component_index') }}">back to list</a>
+
+    <a href="{{ path('app_component_edit', {'id': component.id}) }}">edit</a>
+
+    {{ include('component/_delete_form.html.twig') }}
+{% endblock %}
