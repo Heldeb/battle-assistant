@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Battlefield{% endblock %}
+
+{% block body %}
+    <h1>Create new Battlefield</h1>
+
+    {{ include('battlefield/_form.html.twig') }}
+
+    <a href="{{ path('app_battlefield_index') }}">back to list</a>
+{% endblock %}
