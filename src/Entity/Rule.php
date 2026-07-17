@@ -14,7 +14,7 @@ class Rule
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 100)]
     private ?string $rule_name = null;
 
     #[ORM\Column(type: Types::TEXT)]
