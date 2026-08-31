@@ -1,3 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Special+Elite&display=swap');
+
+:root {
+
+    --border: rgba(255, 255, 255, 0.07);
+    --radius: 14px;
+
+    --font-blackopsone: 'Black Ops One', system-ui;
+    --font-inter: 'Inter', sans-serif;
+    --font-specialelite: 'Special Elite', system-ui;
+
+    /* background / card / section / border / accent / text / text-muted */
+    --color-kaki-clair: #EEE8D5;
+    --color-parchemin: #F5F0E4;
+    --color-vert-militaire: #3A5228;
+    --color-vert-clair: #6B8C4A;
+    --color-orange-tactique: #E8830A;
+    --color-vert-nuit: #2C3D1E;
+
+    --accent: #00e5a0;
+    --accent-2: #00b8d4;
+    --text: #e8eaf0;
+    --text-muted: #7a8099;
+    --radius: 14px;
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0.2rem;
+}
+
 body {
-    background-color: skyblue;
+    background-color: var(--color-vert-militaire);
+    color: var(--color-parchemin);
+    font-family: var(--font-specialelite);
+
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-blackopsone);
+
+}
+
+
+h4 {
+    font-family: var(--font-specialelite);
+}
+
+a {
+    color: var(--color-orange-tactique);
+}
+
+tr {
+    margin: 30rem;
+}
+
+
+/* ========== NAVBAR ========== */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem 1rem;
+    background: var(--color-kaki-clair);
+}
+
+.navbar-middle,
+.navbar-right {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-link {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: var(--color-vert-nuit);
+}
+
+.navbar-right-link {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: var(--color-orange-tactique);
+}
+
+
+.navbar-logo {
+    height: 140px;
+    display: block;
+}
+
+
+/* ========== NAVBAR ========== */
+
+.btn {
+    background: var(--color-orange-tactique);
+}
+
+
+/* ========== BASE ========== */
+
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

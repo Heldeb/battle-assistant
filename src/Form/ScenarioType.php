@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Battlefield;
+use App\Entity\ExpansionPack;
+use App\Entity\Scenario;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+class ScenarioType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('scenario_name')
+            ->add('medal_count')
+            ->add('historical_description')
+            ->add('expansionPack', EntityType::class, [
+                'class' => ExpansionPack::class,
+                'choice_label' => 'id',
+            ])
+            ->add('battlefield', EntityType::class, [
+                'class' => Battlefield::class,
+                'choice_label' => 'id',
+            ])
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Scenario::class,
+        ]);
+    }
+}

@@ -21,9 +21,12 @@
 	</head>
 
 	<body>
-		{% block body %}{% endblock %}
-		{% block javascripts %}
-			{{ importmap('app') }}
-		{% endblock %}
+		<div class="container">
+			{% include "nav.html.twig" %}
+			{% block body %}{% endblock %}
+			{% block javascripts %}
+				{{ importmap('app') }}
+			{% endblock %}
+		</div>
 	</body>
 </html>

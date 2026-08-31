@@ -7,9 +7,9 @@ import './stimulus_bootstrap.js';
  */
 import './styles/app.css';
 
-// Importer le CSS de Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
-// Importer le JavaScript de Bootstrap (pour les composants interactifs)
-import 'bootstrap';
+const button = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.nav-links');
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+button.addEventListener('click', () => {
+    menu.classList.toggle('active');
+});
