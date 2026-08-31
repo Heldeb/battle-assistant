@@ -1,34 +1,37 @@
 <nav class="navbar">
 	<div class="navbar-left">
 		<a href="{{ path('app_home') }}" class="navbar-brand">
-			<img src=" {{ asset('img/logo.png') }} " alt=" Logo Battle Assistant" class="navbar-logo" ->
+			<img src=" {{ asset('img/logo.png') }} " alt=" Logo Battle Assistant" class="navbar-logo">
 		</a>
 	</div>
 
 	<div class="navbar-middle">
-		<a href="{{ path('app_battlefield_index') }}" class="navbar-link">Battlefield</a>
-		<a href="{{ path('app_component_index') }}" class="navbar-link">Component</a>
-		<a href="{{ path('app_event_index') }}" class="navbar-link">Event</a>
-		<a href="{{ path('app_expansion_pack_index') }}" class="navbar-link">ExpansionPack</a>
-		<!-- {# {% if app.user.roles[0] != 'ROLE_USER' %} #}
-											{# <a href="{{ path('app_personal_space') }}" class="navbar-link">PersonalSpace</a> #}
-									{# {% endif %} #} -->
-		<a href="{{ path('app_rule_index') }}" class="navbar-link">Rule</a>
-		<a href="{{ path('app_scenario_index') }}" class="navbar-link">Scenario</a>
-		<a href="{{ path('app_user_index') }}" class="navbar-link">User</a>
+		<h1 class="navbar-title">BATTLE ASSISTANT</h1>
+		<div class="navbar-links">
+			<a href="{{ path('app_scenario_index') }}" class="navbar-link">Scenario</a>
+			<a href="{{ path('app_rule_index') }}" class="navbar-link">Rule</a>
+		</div>
+		<div class="navbar-objects">
+			<a href="{{ path('app_battlefield_index') }}" class="navbar-link-objects">Battlefield</a>
+			<a href="{{ path('app_component_index') }}" class="navbar-link-objects">Component</a>
+			<a href="{{ path('app_event_index') }}" class="navbar-link-objects">Event</a>
+			<a href="{{ path('app_expansion_pack_index') }}" class="navbar-link-objects">ExpansionPack</a>
+			<a href="{{ path('app_rule_index') }}" class="navbar-link-objects">Rule</a>
+			<a href="{{ path('app_scenario_index') }}" class="navbar-link-objects">Scenario</a>
+			<a href="{{ path('app_user_index') }}" class="navbar-link-objects">User</a>
+		</div>
 	</div>
-
 	<!-- 
-																															<div class="navbar-xxxxx">
-																																{# {% if is_granted('ROLE_USER') %} #}
-																																			{# <a href="{{ path('app_book_index') }}" class="navbar-link">Calendrier</a> #}
-																																			{# <a href="{{ path('app_reservation_index') }}" class="navbar-link">Reservations</a> #}
-																																	{# {% endif %} #}
-																																	{# {% if is_granted('ROLE_ADMIN') %} #}
-																																		{# <a href="{{ path('app_user_index') }}" class="navbar-link">Utilisateurs</a> #}
-																																{# {% endif %} #}
-																																</div>
-																-->
+																																														<div class="navbar-xxxxx">
+																																															{# {% if is_granted('ROLE_USER') %} #}
+																																																		{# <a href="{{ path('app_book_index') }}" class="navbar-link">Calendrier</a> #}
+																																																		{# <a href="{{ path('app_reservation_index') }}" class="navbar-link">Reservations</a> #}
+																																																{# {% endif %} #}
+																																																{# {% if is_granted('ROLE_ADMIN') %} #}
+																																																	{# <a href="{{ path('app_user_index') }}" class="navbar-link">Utilisateurs</a> #}
+																																															{# {% endif %} #}
+																																															</div>
+																															-->
 
 	<div class="navbar-right">
 		{% if is_granted('ROLE_USER') %}

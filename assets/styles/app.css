@@ -10,12 +10,12 @@
     --font-specialelite: 'Special Elite', system-ui;
 
     /* background / card / section / border / accent / text / text-muted */
-    --color-kaki-clair: #EEE8D5;
-    --color-parchemin: #F5F0E4;
-    --color-vert-militaire: #3A5228;
-    --color-vert-clair: #6B8C4A;
-    --color-orange-tactique: #E8830A;
-    --color-vert-nuit: #2C3D1E;
+    --color-light-khaki: #EEE8D5;
+    --color-parchment: #F5F0E4;
+    --color-military-green: #3A5228;
+    --color-light-green: #6B8C4A;
+    --color-orange: #E8830A;
+    --color-dark-green: #2C3D1E;
 
     --accent: #00e5a0;
     --accent-2: #00b8d4;
@@ -36,17 +36,15 @@
 }
 
 body {
-    background-color: var(--color-vert-militaire);
-    color: var(--color-parchemin);
+    background-color: var(--color-military-green);
+    color: var(--color-parchment);
     font-family: var(--font-specialelite);
-
 }
 
 h1,
 h2,
 h3 {
     font-family: var(--font-blackopsone);
-
 }
 
 
@@ -55,7 +53,7 @@ h4 {
 }
 
 a {
-    color: var(--color-orange-tactique);
+    color: var(--color-orange);
 }
 
 tr {
@@ -73,27 +71,33 @@ tr {
     align-items: center;
     justify-content: space-between;
     padding: 0.3rem 1rem;
-    background: var(--color-kaki-clair);
+    background: var(--color-dark-green);
 }
 
-.navbar-middle,
+.navbar-middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .navbar-right {
     display: flex;
     flex-direction: row;
 }
 
+
 .navbar-link {
     display: flex;
     align-items: center;
     padding: 1rem;
-    color: var(--color-vert-nuit);
+    color: var(--color-light-khaki);
 }
 
 .navbar-right-link {
     display: flex;
     align-items: center;
     padding: 1rem;
-    color: var(--color-orange-tactique);
+    color: var(--color-orange);
 }
 
 
@@ -102,11 +106,30 @@ tr {
     display: block;
 }
 
+.navbar-title {
+    color: var(--color-orange);
+}
+
+.navbar-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbar-objects {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbar-link-objects {
+    color: var(--color-light-green);
+}
 
 /* ========== NAVBAR ========== */
 
 .btn {
-    background: var(--color-orange-tactique);
+    background: var(--color-orange);
 }
 
 
