@@ -39,6 +39,9 @@ class Scenario
     #[ORM\JoinColumn(nullable: false)]
     private ?Battlefield $battlefield = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $victory_condition = null;
+
     public function __construct()
     {
         $this->playedGames = new ArrayCollection();
@@ -135,6 +138,18 @@ class Scenario
     public function setBattlefield(?Battlefield $battlefield): static
     {
         $this->battlefield = $battlefield;
+
+        return $this;
+    }
+
+    public function getVictoryCondition(): ?string
+    {
+        return $this->victory_condition;
+    }
+
+    public function setVictoryCondition(string $victory_condition): static
+    {
+        $this->victory_condition = $victory_condition;
 
         return $this;
     }
