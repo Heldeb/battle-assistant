@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Scenario;
 use App\Form\ScenarioType;
 use App\Repository\ScenarioRepository;
+use App\Service\ScenarioService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,15 +24,14 @@ final class ScenarioController extends AbstractController
     }
 
     #[Route('/new', name: 'app_scenario_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, ScenarioService $scenarioService): Response
     {
         $scenario = new Scenario();
         $form = $this->createForm(ScenarioType::class, $scenario);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($scenario);
-            $entityManager->flush();
+            $scenarioService->create($scenario);
 
             return $this->redirectToRoute('app_scenario_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -51,13 +51,13 @@ final class ScenarioController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_scenario_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Scenario $scenario, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Scenario $scenario, ScenarioService $scenarioService): Response
     {
         $form = $this->createForm(ScenarioType::class, $scenario);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $scenarioService->update($scenario);
 
             return $this->redirectToRoute('app_scenario_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -69,11 +69,10 @@ final class ScenarioController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_scenario_delete', methods: ['POST'])]
-    public function delete(Request $request, Scenario $scenario, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Scenario $scenario, ScenarioService $scenarioService): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$scenario->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($scenario);
-            $entityManager->flush();
+        if ($this->isCsrfTokenValid('delete' . $scenario->getId(), $request->getPayload()->getString('_token'))) {
+            $scenarioService->delete($scenario);
         }
 
         return $this->redirectToRoute('app_scenario_index', [], Response::HTTP_SEE_OTHER);
