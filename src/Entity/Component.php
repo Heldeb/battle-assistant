@@ -27,7 +27,7 @@ class Component
     private ?ExpansionPack $expansion_pack = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $subcategory = null;
+    private ?string $component_subcategory = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $movement_rules = null;
@@ -45,7 +45,7 @@ class Component
     private ?string $component_icon = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    private ?string $side = null;
+    private ?string $component_side = null;
 
     /**
      * @var Collection<int, Battlefield>
@@ -54,7 +54,7 @@ class Component
     private Collection $battlefields;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $Description = null;
+    private ?string $component_description = null;
 
     public function __construct()
     {
@@ -102,14 +102,14 @@ class Component
         return $this;
     }
 
-    public function getSubcategory(): ?string
+    public function getComponentSubcategory(): ?string
     {
-        return $this->subcategory;
+        return $this->component_subcategory;
     }
 
-    public function setSubcategory(string $subcategory): static
+    public function setComponentSubcategory(string $component_subcategory): static
     {
-        $this->subcategory = $subcategory;
+        $this->component_subcategory = $component_subcategory;
 
         return $this;
     }
@@ -174,14 +174,14 @@ class Component
         return $this;
     }
 
-    public function getSide(): ?string
+    public function getComponentSide(): ?string
     {
-        return $this->side;
+        return $this->component_side;
     }
 
-    public function setSide(?string $side): static
+    public function setComponentSide(?string $component_side): static
     {
-        $this->side = $side;
+        $this->component_side = $component_side;
 
         return $this;
     }
@@ -213,14 +213,14 @@ class Component
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getComponentDescription(): ?string
     {
-        return $this->Description;
+        return $this->component_description;
     }
 
-    public function setDescription(?string $Description): static
+    public function setComponentDescription(?string $component_description): static
     {
-        $this->Description = $Description;
+        $this->component_description = $component_description;
 
         return $this;
     }

@@ -43,7 +43,7 @@ class Event
     /**
      * @var Collection<int, Registration>
      */
-    #[ORM\OneToMany(targetEntity: Registration::class, mappedBy: 'Event')]
+    #[ORM\OneToMany(targetEntity: Registration::class, mappedBy: 'event')]
     private Collection $registrations;
 
     public function __construct()

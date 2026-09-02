@@ -53,7 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Email(
         message: "L\'adresse renseignée {{ value }} n'est pas valide.",
     )]
-    private ?string $email = null;
+    private ?string $user_email = null;
 
     #[ORM\Column(length: 100)]
     private ?string $user_town = null;
@@ -64,7 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, PlayedGames>
      */
-    #[ORM\OneToMany(targetEntity: PlayedGames::class, mappedBy: 'User')]
+    #[ORM\OneToMany(targetEntity: PlayedGames::class, mappedBy: 'user')]
     private Collection $playedGames;
 
     #[ORM\ManyToOne(inversedBy: 'organization')]
@@ -73,7 +73,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Registration>
      */
-    #[ORM\OneToMany(targetEntity: Registration::class, mappedBy: 'User')]
+    #[ORM\OneToMany(targetEntity: Registration::class, mappedBy: 'user')]
     private Collection $registrations;
 
     /**
@@ -164,14 +164,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $data;
     }
 
-    public function getEmail(): ?string
+    public function getUserEmail(): ?string
     {
-        return $this->email;
+        return $this->user_email;
     }
 
-    public function setEmail(string $email): static
+    public function setUserEmail(string $user_email): static
     {
-        $this->email = $email;
+        $this->user_email = $user_email;
 
         return $this;
     }

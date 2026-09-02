@@ -28,7 +28,7 @@ class Scenario
     /**
      * @var Collection<int, PlayedGames>
      */
-    #[ORM\OneToMany(targetEntity: PlayedGames::class, mappedBy: 'Scenario')]
+    #[ORM\OneToMany(targetEntity: PlayedGames::class, mappedBy: 'scenario')]
     private Collection $playedGames;
 
     #[ORM\ManyToOne(inversedBy: 'scenario')]

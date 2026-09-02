@@ -17,14 +17,14 @@ class ComponentType extends AbstractType
         $builder
             ->add('component_name')
             ->add('component_type')
-            ->add('subcategory')
+            ->add('component_subcategory')
             ->add('movement_rules')
             ->add('attack_rules')
             ->add('protection_rules')
             ->add('line_of_sight_rules')
             ->add('component_icon')
-            ->add('side')
-            ->add('Description')
+            ->add('component_side')
+            ->add('component_description')
             ->add('expansion_pack', EntityType::class, [
                 'class' => ExpansionPack::class,
                 'choice_label' => 'id',
