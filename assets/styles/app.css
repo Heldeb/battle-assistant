@@ -36,9 +36,13 @@
 }
 
 body {
-    background-color: var(--color-military-green);
-    color: var(--color-parchment);
+    /* background-color: var(--color-military-green); */
+    color: var(--color-military-green);
     font-family: var(--font-specialelite);
+    background-image: url("/img/parchemin2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 h1,
