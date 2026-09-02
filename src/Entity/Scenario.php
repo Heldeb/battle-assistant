@@ -45,6 +45,9 @@ class Scenario
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTime $date_of_the_battle = null;
 
+    #[ORM\ManyToOne]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->playedGames = new ArrayCollection();
@@ -165,6 +168,18 @@ class Scenario
     public function setDateOfTheBattle(\DateTime $date_of_the_battle): static
     {
         $this->date_of_the_battle = $date_of_the_battle;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

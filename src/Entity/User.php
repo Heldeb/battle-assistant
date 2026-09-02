@@ -76,10 +76,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Registration::class, mappedBy: 'User')]
     private Collection $registrations;
 
+    /**
+     * @var Collection<int, Rule>
+     */
+    #[ORM\OneToMany(targetEntity: Rule::class, mappedBy: 'user')]
+    private Collection $rules;
+
     public function __construct()
     {
         $this->playedGames = new ArrayCollection();
         $this->registrations = new ArrayCollection();
+        $this->rules = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -259,6 +266,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($registration->getUser() === $this) {
                 $registration->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Rule>
+     */
+    public function getRules(): Collection
+    {
+        return $this->rules;
+    }
+
+    public function addRule(Rule $rule): static
+    {
+        if (!$this->rules->contains($rule)) {
+            $this->rules->add($rule);
+            $rule->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRule(Rule $rule): static
+    {
+        if ($this->rules->removeElement($rule)) {
+            // set the owning side to null (unless already changed)
+            if ($rule->getUser() === $this) {
+                $rule->setUser(null);
             }
         }
 

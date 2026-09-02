@@ -26,6 +26,9 @@ class Rule
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $rule_type = null;
 
+    #[ORM\ManyToOne(inversedBy: 'rules')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Rule
     public function setRuleType(?string $rule_type): static
     {
         $this->rule_type = $rule_type;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
