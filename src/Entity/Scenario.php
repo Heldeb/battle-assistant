@@ -42,6 +42,9 @@ class Scenario
     #[ORM\Column(type: Types::TEXT)]
     private ?string $victory_condition = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTime $date_of_the_battle = null;
+
     public function __construct()
     {
         $this->playedGames = new ArrayCollection();
@@ -150,6 +153,18 @@ class Scenario
     public function setVictoryCondition(string $victory_condition): static
     {
         $this->victory_condition = $victory_condition;
+
+        return $this;
+    }
+
+    public function getDateOfTheBattle(): ?\DateTime
+    {
+        return $this->date_of_the_battle;
+    }
+
+    public function setDateOfTheBattle(\DateTime $date_of_the_battle): static
+    {
+        $this->date_of_the_battle = $date_of_the_battle;
 
         return $this;
     }

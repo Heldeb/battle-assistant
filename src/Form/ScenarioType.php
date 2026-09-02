@@ -16,7 +16,9 @@ class ScenarioType extends AbstractType
     {
         $builder
             ->add('scenario_name')
+            ->add('date_of_the_battle')
             ->add('medal_count')
+            ->add('victory_condition')
             ->add('historical_description')
             ->add('expansionPack', EntityType::class, [
                 'class' => ExpansionPack::class,
