@@ -53,7 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Email(
         message: "L\'adresse renseignée {{ value }} n'est pas valide.",
     )]
-    private ?string $user_email = null;
+    private ?string $email = null;
 
     #[ORM\Column(length: 100)]
     private ?string $user_town = null;
@@ -164,14 +164,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $data;
     }
 
-    public function getUserEmail(): ?string
+    public function getEmail(): ?string
     {
-        return $this->user_email;
+        return $this->email;
     }
 
-    public function setUserEmail(string $user_email): static
+    public function setUserEmail(string $email): static
     {
-        $this->user_email = $user_email;
+        $this->email = $email;
 
         return $this;
     }

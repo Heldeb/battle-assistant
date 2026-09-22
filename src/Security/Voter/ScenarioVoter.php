@@ -10,13 +10,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 final class ScenarioVoter extends Voter
 {
 
+    public const CREATE = 'POST_CREATE';
     public const EDIT = 'POST_EDIT';
     public const VIEW = 'POST_VIEW';
 
     protected function supports(string $attribute, mixed $subject): bool
     {
 
-        return in_array($attribute, [self::EDIT, self::VIEW])
+        return in_array($attribute, [self::CREATE, self::EDIT, self::VIEW])
             && $subject instanceof \App\Entity\Scenario;
     }
 
@@ -33,6 +34,12 @@ final class ScenarioVoter extends Voter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
+
+            case self::CREATE:
+                // logic to determine if the user can CREATE
+                // return true or false
+                break;
+
             case self::EDIT:
                 // logic to determine if the user can EDIT
                 // return true or false
