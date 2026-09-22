@@ -35,8 +35,10 @@
 
 	<div class="navbar-right">
 		{% if is_granted('ROLE_USER') %}
-			<a href="#">{{ app.user.username }}</a>
-			<p>{{ app.user.roles[0] }}</p>
+			<div class="navbar-user">
+				<a href="#" class="navbar-username">{{ app.user.username }}</a>
+				<p class="navbar-roles">{{ app.user.roles[0] }}</p>
+			</div>
 			<a href="{{ path('app_logout') }}" class="navbar-link-right">Se déconnecter</a>
 		{% else %}
 			<a href="{{ path('app_login') }}" class="navbar-link-right">Se connecter</a>
