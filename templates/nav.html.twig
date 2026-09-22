@@ -7,18 +7,18 @@
 
 	<div class="navbar-middle">
 		<h1 class="navbar-title">BATTLE ASSISTANT</h1>
-		<div class="navbar-links">
-			<a href="{{ path('app_scenario_index') }}" class="navbar-link">Scenario</a>
-			<a href="{{ path('app_rule_index') }}" class="navbar-link">Rule</a>
+		<div class="navbar-raw-1">
+			<a href="{{ path('app_scenario_index') }}" class="navbar-link-raw-1">Scenario</a>
+			<a href="{{ path('app_rule_index') }}" class="navbar-link-raw-1">Rule</a>
 		</div>
-		<div class="navbar-objects">
-			<a href="{{ path('app_battlefield_index') }}" class="navbar-link-objects">Battlefield</a>
-			<a href="{{ path('app_component_index') }}" class="navbar-link-objects">Component</a>
-			<a href="{{ path('app_event_index') }}" class="navbar-link-objects">Event</a>
-			<a href="{{ path('app_expansion_pack_index') }}" class="navbar-link-objects">ExpansionPack</a>
-			<a href="{{ path('app_rule_index') }}" class="navbar-link-objects">Rule</a>
-			<a href="{{ path('app_scenario_index') }}" class="navbar-link-objects">Scenario</a>
-			<a href="{{ path('app_user_index') }}" class="navbar-link-objects">User</a>
+		<div class="navbar-raw-2">
+			<a href="{{ path('app_battlefield_index') }}" class="navbar-link-raw-2">Battlefield</a>
+			<a href="{{ path('app_component_index') }}" class="navbar-link-raw-2">Component</a>
+			<a href="{{ path('app_event_index') }}" class="navbar-link-raw-2">Event</a>
+			<a href="{{ path('app_expansion_pack_index') }}" class="navbar-link-raw-2">ExpansionPack</a>
+			<a href="{{ path('app_rule_index') }}" class="navbar-link-raw-2">Rule</a>
+			<a href="{{ path('app_scenario_index') }}" class="navbar-link-raw-2">Scenario</a>
+			<a href="{{ path('app_user_index') }}" class="navbar-link-raw-2">User</a>
 		</div>
 	</div>
 	<!-- 
@@ -36,11 +36,11 @@
 	<div class="navbar-right">
 		{% if is_granted('ROLE_USER') %}
 			<a href="#">{{ app.user.username }}</a>
-			<p>{{app.user.roles[0]}}</p>
-			<a href="{{ path('app_logout') }}" class="navbar-right-link">Se déconnecter</a>
+			<p>{{ app.user.roles[0] }}</p>
+			<a href="{{ path('app_logout') }}" class="navbar-link-right">Se déconnecter</a>
 		{% else %}
-			<a href="{{ path('app_login') }}" class="navbar-right-link">Se connecter</a>
-			<a href="{{ path('app_register') }}" class="navbar-right-link">S'enregistrer</a>
+			<a href="{{ path('app_login') }}" class="navbar-link-right">Se connecter</a>
+			<a href="{{ path('app_register') }}" class="navbar-link-right">S'enregistrer</a>
 		{% endif %}
 
 	</div>

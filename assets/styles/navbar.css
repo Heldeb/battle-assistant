@@ -1,0 +1,89 @@
+/*
+div : navbar-left  ///  a : navbar-brand  ///  img : navbar-logo
+
+div : navbar-middle
+h1 : navbar-title
+div : navbar-links  ///  a : navbar-link
+div : navbar-objects  ///  a : navbar-link-objects
+
+div : navbar-right  ///  a : navbar-right-link
+*/
+
+/* ========== PARENT ========== */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem 1rem;
+    background: var(--color-dark-green);
+}
+
+
+/* ========== ZONES ========== */
+
+.navbar-middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar-raw-1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbar-raw-2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
+
+.navbar-right {
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* ========== LIENS ========== */
+
+.navbar-link-raw-1 {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    padding: 2rem;
+    color: var(--color-light-khaki);
+}
+
+.navbar-link-raw-2 {
+    display: flex;
+    color: var(--color-light-green);
+}
+
+.navbar-link-right {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: var(--color-orange);
+}
+
+
+/* ========== AUTRES ========== */
+
+.navbar-logo {
+    height: 140px;
+    display: block;
+}
+
+.navbar-title {
+    color: var(--color-orange);
+}
+
+.btn {
+    background: var(--color-orange);
+}
