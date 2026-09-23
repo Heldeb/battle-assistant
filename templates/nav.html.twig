@@ -11,15 +11,17 @@
 			<a href="{{ path('app_scenario_index') }}" class="navbar-link-raw-1">Scenario</a>
 			<a href="{{ path('app_rule_index') }}" class="navbar-link-raw-1">Rule</a>
 		</div>
-		<div class="navbar-raw-2">
-			<a href="{{ path('app_battlefield_index') }}" class="navbar-link-raw-2">Battlefield</a>
-			<a href="{{ path('app_component_index') }}" class="navbar-link-raw-2">Component</a>
-			<a href="{{ path('app_event_index') }}" class="navbar-link-raw-2">Event</a>
-			<a href="{{ path('app_expansion_pack_index') }}" class="navbar-link-raw-2">ExpansionPack</a>
-			<a href="{{ path('app_rule_index') }}" class="navbar-link-raw-2">Rule</a>
-			<a href="{{ path('app_scenario_index') }}" class="navbar-link-raw-2">Scenario</a>
-			<a href="{{ path('app_user_index') }}" class="navbar-link-raw-2">User</a>
-		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="navbar-raw-2">
+				<a href="{{ path('app_battlefield_index') }}" class="navbar-link-raw-2">Battlefield</a>
+				<a href="{{ path('app_component_index') }}" class="navbar-link-raw-2">Component</a>
+				<a href="{{ path('app_event_index') }}" class="navbar-link-raw-2">Event</a>
+				<a href="{{ path('app_expansion_pack_index') }}" class="navbar-link-raw-2">ExpansionPack</a>
+				<a href="{{ path('app_rule_index') }}" class="navbar-link-raw-2">Rule</a>
+				<a href="{{ path('app_scenario_index') }}" class="navbar-link-raw-2">Scenario</a>
+				<a href="{{ path('app_user_index') }}" class="navbar-link-raw-2">User</a>
+			</div>
+		{% endif %}
 	</div>
 	<!-- 
 																																														<div class="navbar-xxxxx">

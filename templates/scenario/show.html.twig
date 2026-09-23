@@ -3,32 +3,40 @@
 {% block title %}Scenario{% endblock %}
 
 {% block body %}
-    <h1>Scenario</h1>
+	<h1>Scenario</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ scenario.id }}</td>
-            </tr>
-            <tr>
-                <th>Scenario_name</th>
-                <td>{{ scenario.scenarioName }}</td>
-            </tr>
-            <tr>
-                <th>Medal_count</th>
-                <td>{{ scenario.medalCount }}</td>
-            </tr>
-            <tr>
-                <th>Historical_description</th>
-                <td>{{ scenario.historicalDescription }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Nom du scénario</th>
+				<td>{{ scenario.scenarioName }}</td>
+			</tr>
+			<tr>
+				<th>Date de la bataille</th>
+				<td>{{ scenario.dateOfTheBattle|date('d/m/Y') }}</td>
+			</tr>
+			<tr>
+				<th>Nombre de médailles</th>
+				<td>{{ scenario.medalCount }}</td>
+			</tr>
+			<tr>
+				<th>Conditions de victoire</th>
+				<td>{{ scenario.victoryCondition }}</td>
+			</tr>
+			<tr>
+				<th>Extension</th>
+				<td>{{ scenario.expansionPack }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_scenario_index') }}">back to list</a>
+	<a href="{{ path('app_scenario_index') }}">back to list</a>
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_scenario_edit', {'id': scenario.id}) }}">edit</a>
+	{% endif %}
 
-    <a href="{{ path('app_scenario_edit', {'id': scenario.id}) }}">edit</a>
+	{% if is_granted('ROLE_ADMIN') %}
+		{{ include('scenario/_delete_form.html.twig') }}
+	{% endif %}
 
-    {{ include('scenario/_delete_form.html.twig') }}
 {% endblock %}
