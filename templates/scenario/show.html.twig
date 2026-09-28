@@ -1,42 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Scenario{% endblock %}
+{% block title %}{{ scenario.scenarioName }}{% endblock %}
 
 {% block body %}
-	<h1>Scenario</h1>
+	<div class="content">
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Nom du scénario</th>
-				<td>{{ scenario.scenarioName }}</td>
-			</tr>
-			<tr>
-				<th>Date de la bataille</th>
-				<td>{{ scenario.dateOfTheBattle|date('d/m/Y') }}</td>
-			</tr>
-			<tr>
-				<th>Nombre de médailles</th>
-				<td>{{ scenario.medalCount }}</td>
-			</tr>
-			<tr>
-				<th>Conditions de victoire</th>
-				<td>{{ scenario.victoryCondition }}</td>
-			</tr>
-			<tr>
-				<th>Extension</th>
-				<td>{{ scenario.expansionPack }}</td>
-			</tr>
-		</tbody>
-	</table>
+		<div class="subtitle">
+			<h2>Scénario</h2>
+		</div>
+		<div class="subtitle">
+			<h4 class="table-detail-name">{{ scenario.scenarioName }}</h4>
+		</div>
+		<div class="grid-container">
+			<table class="table-scenario">
+				<tbody>
+					<tr>
+						<th class="table-detail-label">Nom du scénario</th>
+						<td>{{ scenario.scenarioName }}</td>
+					</tr>
+					<tr>
+						<th class="table-detail-label">Date de la bataille</th>
+						<td class="table-detail-cell">{{ scenario.dateOfTheBattle|date('d/m/Y') }}</td>
+					</tr>
+					<tr>
+						<th class="table-detail-label">Nombre de médailles</th>
+						<td class="table-detail-cell">{{ scenario.medalCount }}</td>
+					</tr>
+					<tr>
+						<th class="table-detail-label">Conditions de victoire</th>
+						<td class="table-detail-cell">{{ scenario.victoryCondition }}</td>
+					</tr>
+					<tr>
+						<th class="table-detail-label">Extension</th>
+						<td class="table-detail-cell">{{ scenario.expansionPack.expansionPackName }}</td>
+					</tr>
+					<tr>
+						<th class="table-detail-label">Carte</th>
+						<td class="table-detail-cell">{{ scenario.battlefield.battlefieldType }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="table-links">
+			<a href="{{ path('app_scenario_index') }}">Retour</a>
+			
+			{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path('app_scenario_edit', {'id': scenario.id}) }}">Modifier</a>
+			{% endif %}
 
-	<a href="{{ path('app_scenario_index') }}">back to list</a>
-	{% if is_granted('ROLE_ADMIN') %}
-		<a href="{{ path('app_scenario_edit', {'id': scenario.id}) }}">edit</a>
-	{% endif %}
-
-	{% if is_granted('ROLE_ADMIN') %}
-		{{ include('scenario/_delete_form.html.twig') }}
-	{% endif %}
+			{% if is_granted('ROLE_ADMIN') %}
+				{{ include('scenario/_delete_form.html.twig') }}
+			{% endif %}
+		</div>
 
 {% endblock %}

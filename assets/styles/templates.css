@@ -1,7 +1,57 @@
-/* ========== HOME ========== */
+/* ========== ELEMENTS COMMUNS ========== */
 
-.home {
+.content {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.subtitle {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ========== TABLEAUX ========== */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto;
+    grid-column: span 2;
+    grid-template-rows: 200px 400px;
+    padding: 12px;
+}
+
+.table-scenario {
+    padding: 12px;
+}
+
+.table-label,
+.table-cell {
+    padding: 12px;
+    border: thick double var(--color-military-green);
+    text-align: center;
+}
+
+.table-link {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 12px;
+}
+
+.table-detail-label {
+    display: flex;
+    justify-content: flex-end;
+    margin: 12px;
+}
+
+
+.table-detail-cell {
+    margin: 12px;
+}
+
+.table-detail-name {
+    color: ;
+    color: var(--color-orange);
 }

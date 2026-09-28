@@ -3,37 +3,43 @@
 {% block title %}Liste des scénarios{% endblock %}
 
 {% block body %}
-	<h1>Liste des scénarios</h1>
+	<div class="content">
+		<div class="subtitle">
+			<h2>Liste des scénarios</h2>
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<a href="{{ path('app_scenario_new') }}">Nouveau</a>
+		{% endif %}
+		<div class="grid-container">
+			<table class="table-scenario">
+				<thead>
+					<tr>
+						<th class="table-label">Nom du scénario</th>
+						<th class="table-label">Date de la bataille</th>
+						<th class="table-label">Nombre de médailles</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for scenario in scenarios %}
+						<tr>
+							<td class="table-cell">{{ scenario.scenarioName }}</td>
+							<td class="table-cell">{{ scenario.dateOfTheBattle|date('d/m/Y') }}</td>
+							<td class="table-cell">{{ scenario.medalCount }}</td>
+							<td class="table-link">
+								<a href="{{ path('app_scenario_show', {'id': scenario.id}) }}">Détails</a>
+								{% if is_granted('ROLE_ADMIN') %}
+									<a href="{{ path('app_scenario_edit', {'id': scenario.id}) }}">Modifier</a>
+								{% endif %}
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td>Base de données vide</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Nom du scénario</th>
-				<th>Date de la bataille</th>
-				<th>Nombre de médailles</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for scenario in scenarios %}
-				<tr>
-					<td>{{ scenario.scenarioName }}</td>
-					<td>{{ scenario.dateOfTheBattle|date('d/m/Y') }}</td>
-					<td>{{ scenario.medalCount }}</td>
-					<td>
-						<a href="{{ path('app_scenario_show', {'id': scenario.id}) }}">show</a>
-						{% if is_granted('ROLE_ADMIN') %}
-							<a href="{{ path('app_scenario_edit', {'id': scenario.id}) }}">edit</a>
-						{% endif %}
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td>no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-	{% if is_granted('ROLE_ADMIN') %}
-		<a href="{{ path('app_scenario_new') }}">Create new</a>
-	{% endif %}
+	</div>
 {% endblock %}
