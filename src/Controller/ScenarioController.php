@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-
+// ========== VIEW ==========
 #[Route('/scenario')]
 final class ScenarioController extends AbstractController
 {
@@ -27,7 +27,7 @@ final class ScenarioController extends AbstractController
         ]);
     }
 
-    // Création réservée à l'admin
+    // ========== NEW ==========
 
     #[Route('/new', name: 'app_scenario_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ScenarioService $scenarioService): Response
@@ -62,8 +62,9 @@ final class ScenarioController extends AbstractController
         ]);
     }
 
-    // Modification réservée à l'admin
-    #[IsGranted('POST_EDIT', subject: 'post')]
+    // ========== EDIT ==========
+
+    #[IsGranted('POST_EDIT', subject: 'scenario')]
     #[Route('/{id}/edit', name: 'app_scenario_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Scenario $scenario, ScenarioService $scenarioService): Response
     {
@@ -82,6 +83,8 @@ final class ScenarioController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    // ========== DELETE ==========
 
     #[Route('/{id}', name: 'app_scenario_delete', methods: ['POST'])]
     public function delete(Request $request, Scenario $scenario, ScenarioService $scenarioService): Response
