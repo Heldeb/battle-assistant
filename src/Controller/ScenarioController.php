@@ -7,12 +7,10 @@ use App\Form\ScenarioType;
 use App\Repository\ScenarioRepository;
 use App\Security\Voter\ScenarioVoter;
 use App\Service\ScenarioService;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 // ========== VIEW ==========
 #[Route('/scenario')]
@@ -27,20 +25,20 @@ final class ScenarioController extends AbstractController
         ]);
     }
 
-    // ========== NEW ==========
+    // ========== SCENARIO_CREATE ==========
 
     #[Route('/new', name: 'app_scenario_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ScenarioService $scenarioService): Response
     {
 
+        $this->denyAccessUnlessGranted(
+            ScenarioVoter::SCENARIO_CREATE
+        );
+
         $scenario = new Scenario();
         $form = $this->createForm(ScenarioType::class, $scenario);
         $form->handleRequest($request);
 
-        $this->denyAccessUnlessGranted(
-            ScenarioVoter::CREATE,
-            $scenario
-        );
 
         if ($form->isSubmitted() && $form->isValid()) {
             $scenarioService->create($scenario);
@@ -54,6 +52,8 @@ final class ScenarioController extends AbstractController
         ]);
     }
 
+    // ========== SCENARIO_SHOW ==========
+
     #[Route('/{id}', name: 'app_scenario_show', methods: ['GET'])]
     public function show(Scenario $scenario): Response
     {
@@ -62,13 +62,12 @@ final class ScenarioController extends AbstractController
         ]);
     }
 
-    // ========== EDIT ==========
+    // ========== SCENARIO_EDIT ==========
 
-    #[IsGranted('POST_EDIT', subject: 'scenario')]
     #[Route('/{id}/edit', name: 'app_scenario_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Scenario $scenario, ScenarioService $scenarioService): Response
     {
-
+        $this->denyAccessUnlessGranted(ScenarioVoter::SCENARIO_EDIT, $scenario);
         $form = $this->createForm(ScenarioType::class, $scenario);
         $form->handleRequest($request);
 
@@ -84,11 +83,14 @@ final class ScenarioController extends AbstractController
         ]);
     }
 
-    // ========== DELETE ==========
+    // ========== SCENARIO_DELETE ==========
 
     #[Route('/{id}', name: 'app_scenario_delete', methods: ['POST'])]
     public function delete(Request $request, Scenario $scenario, ScenarioService $scenarioService): Response
     {
+
+        $this->denyAccessUnlessGranted(ScenarioVoter::SCENARIO_DELETE, $scenario);
+
         if ($this->isCsrfTokenValid('delete' . $scenario->getId(), $request->getPayload()->getString('_token'))) {
             $scenarioService->delete($scenario);
         }
