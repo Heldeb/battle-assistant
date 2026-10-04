@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-// ========== VIEW ==========
+// ========== SCENARIO_VIEW ==========
 #[Route('/scenario')]
 final class ScenarioController extends AbstractController
 {
@@ -39,10 +39,8 @@ final class ScenarioController extends AbstractController
         $form = $this->createForm(ScenarioType::class, $scenario);
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
             $scenarioService->create($scenario);
-
             return $this->redirectToRoute('app_scenario_index', [], Response::HTTP_SEE_OTHER);
         }
 

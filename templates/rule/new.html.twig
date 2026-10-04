@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Rule{% endblock %}
+{% block title %}Nouvelle règle{% endblock %}
 
 {% block body %}
-    <h1>Create new Rule</h1>
+
+    <div class="subtitle">
+        <h2>Ajouter une nouvelle règle</h2>
+    </div>
 
     {{ include('rule/_form.html.twig') }}
 
-    <a href="{{ path('app_rule_index') }}">back to list</a>
+    <a href="{{ path('app_rule_index') }}">Retour</a>
 {% endblock %}

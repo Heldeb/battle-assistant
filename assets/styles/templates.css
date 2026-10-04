@@ -6,10 +6,27 @@
     align-items: center;
 }
 
+.action {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
 .subtitle {
     display: flex;
     align-items: center;
     padding: 20px;
+}
+
+.btn {
+    font-family: var(--font-specialelite);
+    color: var(--color-orange);
+    background: none;
+    border: none;
+    text-decoration: underline;
+    font: inherit;
+    cursor: pointer;
 }
 
 /* ========== TABLEAUX ========== */
@@ -22,7 +39,7 @@
     padding: 12px;
 }
 
-.table-scenario {
+.table {
     padding: 12px;
 }
 
@@ -31,6 +48,11 @@
     padding: 12px;
     border: thick double var(--color-military-green);
     text-align: center;
+}
+
+.table-label {
+    background-color: var(--color-military-green);
+    color: var(--color-light-khaki);
 }
 
 .table-link {

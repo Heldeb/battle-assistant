@@ -15,17 +15,29 @@ class ScenarioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('scenario_name')
-            ->add('date_of_the_battle')
-            ->add('medal_count')
-            ->add('victory_condition')
-            ->add('historical_description')
+            ->add('scenario_name', null, [
+                'label' => 'Nom du scénario',
+            ])
+            ->add('date_of_the_battle', null, [
+                'label' => 'Date de la bataille',
+            ])
+            ->add('medal_count', null, [
+                'label' => 'Nombre de médailles',
+            ])
+            ->add('victory_condition', null, [
+                'label' => 'Conditions de victoire',
+            ])
+            ->add('historical_description', null, [
+                'label' => 'Description historique',
+            ])
             ->add('expansionPack', EntityType::class, [
                 'class' => ExpansionPack::class,
+                'label' => 'Extension',
                 'choice_label' => 'id',
             ])
             ->add('battlefield', EntityType::class, [
                 'class' => Battlefield::class,
+                'label' => 'Carte',
                 'choice_label' => 'id',
             ])
         ;

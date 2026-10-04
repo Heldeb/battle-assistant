@@ -96,7 +96,3 @@ div : navbar-right  ///  a : navbar-right-link
     color: white;
     background-color: blueviolet;
 }
-
-.btn {
-    background: var(--color-orange);
-}

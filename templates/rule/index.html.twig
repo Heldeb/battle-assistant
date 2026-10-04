@@ -1,41 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Rule index{% endblock %}
+{% block title %}Liste de règles{% endblock %}
 
 {% block body %}
-    <h1>Rule index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Rule_name</th>
-                <th>Rule_description</th>
-                <th>Rule_step</th>
-                <th>Rule_type</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for rule in rules %}
-            <tr>
-                <td>{{ rule.id }}</td>
-                <td>{{ rule.ruleName }}</td>
-                <td>{{ rule.ruleDescription }}</td>
-                <td>{{ rule.ruleStep }}</td>
-                <td>{{ rule.ruleType }}</td>
-                <td>
-                    <a href="{{ path('app_rule_show', {'id': rule.id}) }}">show</a>
-                    <a href="{{ path('app_rule_edit', {'id': rule.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_rule_new') }}">Create new</a>
+    <div class="content">
+        <div class="subtitle">
+            <h2>Liste de règles</h2>
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_rule_new') }}">Nouveau</a>
+        {% endif %}
+        <div class="grid-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table-label">Nom de la règle</th>
+                        <th class="table-label">Etape</th>
+                        <th class="table-label">Type de règle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for rule in rules %}
+                        <tr>
+                            <td class="table-cell">{{ rule.ruleName }}</td>
+                            <td class="table-cell">{{ rule.ruleStep }}</td>
+                            <td class="table-cell">{{ rule.ruleType }}</td>
+                            <td class="table-link">
+                                <a href="{{ path('app_rule_show', {'id': rule.id}) }}">Détails</a>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('app_rule_edit', {'id': rule.id}) }}">Modifier</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>Base de données vide</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

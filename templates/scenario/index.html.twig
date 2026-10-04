@@ -7,11 +7,16 @@
 		<div class="subtitle">
 			<h2>Liste des scénarios</h2>
 		</div>
-		{% if is_granted('ROLE_ADMIN') %}
-			<a href="{{ path('app_scenario_new') }}">Nouveau</a>
-		{% endif %}
+
+		<div class="action">
+			<a href="{{ path('app_scenario_index') }}">Retour</a>
+			{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path('app_scenario_new') }}">Nouveau</a>
+			{% endif %}
+		</div>
+
 		<div class="grid-container">
-			<table class="table-scenario">
+			<table class="table">
 				<thead>
 					<tr>
 						<th class="table-label">Nom du scénario</th>
@@ -29,6 +34,7 @@
 								<a href="{{ path('app_scenario_show', {'id': scenario.id}) }}">Détails</a>
 								{% if is_granted('ROLE_ADMIN') %}
 									<a href="{{ path('app_scenario_edit', {'id': scenario.id}) }}">Modifier</a>
+									{{ include('scenario/_delete_form.html.twig') }}
 								{% endif %}
 							</td>
 						</tr>
@@ -40,6 +46,13 @@
 				</tbody>
 			</table>
 		</div>
-
+		
+		<div class="action">
+			<a href="{{ path('app_scenario_index') }}">Retour</a>
+			{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path('app_scenario_new') }}">Nouveau</a>
+			{% endif %}
+		</div>
 	</div>
+
 {% endblock %}
