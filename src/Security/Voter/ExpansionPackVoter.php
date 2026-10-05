@@ -11,19 +11,19 @@ use Symfony\Component\Security\Core\User\UserInterface;
 final class ExpansionPackVoter extends Voter
 {
     // ========== Ajouter constantes par souci de maintenance ==========
-    public const EXPANSIONPACK_CREATE = 'expansionpack_create';
-    public const EXPANSIONPACK_DELETE = 'expansionpack_delete';
-    public const EXPANSIONPACK_EDIT = 'expansionpack_edit';
+    public const EXPANSION_PACK_CREATE = 'expansion_pack_create';
+    public const EXPANSION_PACK_DELETE = 'expansion_pack_delete';
+    public const EXPANSION_PACK_EDIT = 'expansion_pack_edit';
 
     // ========== Vérifier le subject ==========
     protected function supports(string $attribute, mixed $expansionPack): bool
     {
 
-        if ($attribute === self::EXPANSIONPACK_CREATE) {
+        if ($attribute === self::EXPANSION_PACK_CREATE) {
             return true;
         }
-        return in_array($attribute, [self::EXPANSIONPACK_EDIT, self::EXPANSIONPACK_DELETE,], true)
-            && $rule instanceof ExpansionPack;
+        return in_array($attribute, [self::EXPANSION_PACK_EDIT, self::EXPANSION_PACK_DELETE,], true)
+            && $expansionPack instanceof ExpansionPack;
     }
 
 

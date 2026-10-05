@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New ExpansionPack{% endblock %}
+{% block title %}Nouvelle extension{% endblock %}
 
 {% block body %}
-    <h1>Create new ExpansionPack</h1>
+    <div class="subtitle">
+        <h2>Ajouter une nouvelle extension</h2>
+    </div>
 
     {{ include('expansion_pack/_form.html.twig') }}
 
-    <a href="{{ path('app_expansion_pack_index') }}">back to list</a>
+    <a href="{{ path('app_expansion_pack_index') }}">Retour</a>
 {% endblock %}
