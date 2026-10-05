@@ -13,8 +13,6 @@
 			<a href="{{ path('app_scenario_index') }}">Retour</a>
 			{% if is_granted('ROLE_ADMIN') %}
 				<a href="{{ path('app_scenario_edit', {'id': scenario.id}) }}">Modifier</a>
-			{% endif %}
-			{% if is_granted('ROLE_ADMIN') %}
 				{{ include('scenario/_delete_form.html.twig') }}
 			{% endif %}
 		</div>
@@ -22,6 +20,7 @@
 		<div class="subtitle">
 			<h4 class="table-detail-name">{{ scenario.scenarioName }}</h4>
 		</div>
+		
 		<div class="grid-container">
 			<table class="table">
 				<tbody>
@@ -57,8 +56,6 @@
 			<a href="{{ path('app_scenario_index') }}">Retour</a>
 			{% if is_granted('ROLE_ADMIN') %}
 				<a href="{{ path('app_scenario_edit', {'id': scenario.id}) }}">Modifier</a>
-			{% endif %}
-			{% if is_granted('ROLE_ADMIN') %}
 				{{ include('scenario/_delete_form.html.twig') }}
 			{% endif %}
 		</div>

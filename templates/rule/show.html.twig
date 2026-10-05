@@ -4,43 +4,47 @@
 
 {% block body %}
     <div class="content">
-        <div class="action">
-            <a href="{{ path('app_rule_index') }}">Retour</a>
-        </div>
+
         <div class="subtitle">
             <h2>Règle</h2>
         </div>
+        
+        <div class="action">
+            <a href="{{ path('app_rule_index') }}">Retour</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_rule_edit', {'id': rule.id}) }}">Modifier</a>
+                {{ include('rule/_delete_form.html.twig') }}
+            {% endif %}
+        </div>
+
         <div class="subtitle">
             <h4 class="table-detail-name">{{ rule.ruleName }}</h4>
         </div>
+
         <div class="grid-container">
             <table class="table">
                 <tbody>
                     <tr>
-                        <th>Nom de la règle</th>
+                        <th class="table-detail-label">Type de règle</th>
+                        <td>{{ rule.ruleType }}</td>
+                    </tr>
+                    <tr>
+                        <th class="table-detail-label">Nom de la règle</th>
                         <td>{{ rule.ruleName }}</td>
                     </tr>
                     <tr>
-                        <th>Description</th>
+                        <th class="table-detail-label">Description</th>
                         <td>{{ rule.ruleDescription }}</td>
                     </tr>
-                    <tr>
-                        <th>Etape</th>
-                        <td>{{ rule.ruleStep }}</td>
-                    </tr>
-                    <tr>
-                        <th>Type de règle</th>
-                        <td>{{ rule.ruleType }}</td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>
 
-        <div class="table-links">
+        <div class="action">
+            <a href="{{ path('app_rule_index') }}">Retour</a>
             {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('app_rule_edit', {'id': rule.id}) }}">Modifier</a>
-            {% endif %}
-            {% if is_granted('ROLE_ADMIN') %}
                 {{ include('rule/_delete_form.html.twig') }}
             {% endif %}
         </div>

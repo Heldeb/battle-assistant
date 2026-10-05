@@ -12,10 +12,20 @@ class Rule1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('rule_name')
-            ->add('rule_description')
-            ->add('rule_step')
-            ->add('rule_type')
+            ->add('rule_type', null, [
+                'label' => 'Type de règle',
+            ])
+            ->add('rule_step', null, [
+                'label' => 'Etape de la règle',
+            ])
+            ->add('rule_name', null, [
+                'label' => 'Nom de la règle',
+            ])
+            ->add('rule_description', null, [
+                'label' => 'Description de la règle',
+            ])
+
+
         ;
     }
 

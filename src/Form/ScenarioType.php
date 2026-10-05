@@ -33,12 +33,12 @@ class ScenarioType extends AbstractType
             ->add('expansionPack', EntityType::class, [
                 'class' => ExpansionPack::class,
                 'label' => 'Extension',
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
             ->add('battlefield', EntityType::class, [
                 'class' => Battlefield::class,
                 'label' => 'Carte',
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
         ;
     }

@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit ExpansionPack{% endblock %}
+{% block title %}Modifier l'extension{% endblock %}
 
 {% block body %}
-    <h1>Edit ExpansionPack</h1>
+    <h2>Modifier l'extension</h2>
 
-    {{ include('expansion_pack/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('expansion_pack/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
-    <a href="{{ path('app_expansion_pack_index') }}">back to list</a>
+    <a href="{{ path('app_expansion_pack_index') }}">Retour</a>
 
     {{ include('expansion_pack/_delete_form.html.twig') }}
 {% endblock %}

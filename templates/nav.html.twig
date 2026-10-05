@@ -9,22 +9,27 @@
 		<h1 class="navbar-title">BATTLE ASSISTANT</h1>
 		<div class="navbar-raw-1">
 			<a href="{{ path('app_scenario_index') }}" class="navbar-link-raw-1">Scénarios</a>
-			<a href="{{ path('app_rule_index') }}" class="navbar-link-raw-1">Règles</a>
+
+			<div class="dropdown">
+				<button class="dropdown-toggle" aria-expanded="false" aria-controls="rules-menu">Règles<span class="caret">▾</span></button>
+				<ul id="rules-menu" class="dropdown-menu"></ul>
+				<li><a href="{{ path('app_battlefield_index') }}" class="navbar-link-raw-2">Cartes</a></li>
+				<li><a href="{{ path('app_component_index') }}" class="navbar-link-raw-2">Matériel</a></li>
+				<li><a href="{{ path('app_expansion_pack_index') }}" class="navbar-link-raw-2">Extensions</a></li>
+				<li><a href="{{ path('app_rule_index') }}" class="navbar-link-raw-2">Règles</a></li>
+				</ul>
+			</div>
+			<a href="{{ path('app_personal_space') }}" class="navbar-link-raw-1">Espace personnel</a>
 		</div>
 		{% if is_granted('ROLE_ADMIN') %}
 			<div class="navbar-raw-2">
-				<a href="{{ path('app_battlefield_index') }}" class="navbar-link-raw-2">Map</a>
-				<a href="{{ path('app_component_index') }}" class="navbar-link-raw-2">Matériel</a>
 				<a href="{{ path('app_event_index') }}" class="navbar-link-raw-2">Evénements</a>
-				<a href="{{ path('app_expansion_pack_index') }}" class="navbar-link-raw-2">Extensions</a>
-				<a href="{{ path('app_rule_index') }}" class="navbar-link-raw-2">Règles</a>
-				<a href="{{ path('app_scenario_index') }}" class="navbar-link-raw-2">Scénarios</a>
 				<a href="{{ path('app_user_index') }}" class="navbar-link-raw-2">Utilisateur</a>
 			</div>
 		{% endif %}
 	</div>
 	
-	<div class="navbar-right">
+	<div class="navbar-user ">
 		{% if is_granted('ROLE_USER') %}
 			<div class="navbar-user">
 				<a href="#" class="navbar-username">{{ app.user.username }}</a>
@@ -35,6 +40,6 @@
 			<a href="{{ path('app_login') }}" class="navbar-link-right">Se connecter</a>
 			<a href="{{ path('app_register') }}" class="navbar-link-right">S'enregistrer</a>
 		{% endif %}
-
+	</div>
 	</div>
 </nav>

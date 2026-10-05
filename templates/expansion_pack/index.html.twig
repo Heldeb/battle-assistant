@@ -1,35 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ExpansionPack index{% endblock %}
+{% block title %}Liste des extensions{% endblock %}
 
 {% block body %}
-    <h1>ExpansionPack index</h1>
+    <div class="content">
+        <div class="subtitle">
+            <h2>Liste des extensions</h2>
+        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Expansion_pack_name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for expansion_pack in expansion_packs %}
-            <tr>
-                <td>{{ expansion_pack.id }}</td>
-                <td>{{ expansion_pack.expansionPackName }}</td>
-                <td>
-                    <a href="{{ path('app_expansion_pack_show', {'id': expansion_pack.id}) }}">show</a>
-                    <a href="{{ path('app_expansion_pack_edit', {'id': expansion_pack.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="action">
+            <a href="{{ path('app_expansion_pack_index') }}">Retour</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_expansion_pack_new') }}">Nouveau</a>
+            {% endif %}
+        </div>
+        
+        <div class="grid-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table-label">Nom des extensions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expansion_pack in expansion_packs %}
+                        <tr>
+                            <td class="table-cell">{{ expansion_pack.expansionPackName }}</td>
+                            <td class="table-link">
+                                <a href="{{ path('app_expansion_pack_show', {'id': expansion_pack.id}) }}">Détails</a>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('app_expansion_pack_edit', {'id': expansion_pack.id}) }}">Modifier</a>
+                                    {{ include('expansion_pack/_delete_form.html.twig') }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>Base de données vide</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+		
+        <div class="action">
+            <a href="{{ path('app_expansion_pack_index') }}">Retour</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_expansion_pack_new') }}">Nouveau</a>
+            {% endif %}
+        </div>
+    </div>
 
-    <a href="{{ path('app_expansion_pack_new') }}">Create new</a>
 {% endblock %}
