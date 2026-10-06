@@ -12,8 +12,7 @@ class ExpansionPackType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('expansion_pack_name')
-        ;
+            ->add('expansion_pack_name');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

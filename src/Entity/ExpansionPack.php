@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ExpansionPackRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ExpansionPackRepository::class)]
@@ -36,11 +37,22 @@ class ExpansionPack
     #[ORM\OneToMany(targetEntity: Battlefield::class, mappedBy: 'expansion_pack')]
     private Collection $battlefields;
 
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $expansion_pack_icon = null;
+
+    /**
+     * @var Collection<int, Picture>
+     */
+    #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'design')]
+    private Collection $pictures;
+
     public function __construct()
     {
         $this->scenario = new ArrayCollection();
         $this->components = new ArrayCollection();
         $this->battlefields = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -56,6 +68,18 @@ class ExpansionPack
     public function setExpansionPackName(string $expansion_pack_name): static
     {
         $this->expansion_pack_name = $expansion_pack_name;
+
+        return $this;
+    }
+
+    public function getExpansionPackIcon(): ?string
+    {
+        return $this->expansion_pack_icon;
+    }
+
+    public function setExpansionPackIcon(string $expansion_pack_icon): static
+    {
+        $this->expansion_pack_icon = $expansion_pack_icon;
 
         return $this;
     }
@@ -144,6 +168,36 @@ class ExpansionPack
             // set the owning side to null (unless already changed)
             if ($battlefield->getExpansionPack() === $this) {
                 $battlefield->setExpansionPack(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Picture>
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Picture $picture): static
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures->add($picture);
+            $picture->setDesign($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): static
+    {
+        if ($this->pictures->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($picture->getDesign() === $this) {
+                $picture->setDesign(null);
             }
         }
 

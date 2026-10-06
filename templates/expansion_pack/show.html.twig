@@ -20,12 +20,37 @@
         <div class="subtitle">
             <h4 class="table-detail-name">{{ expansion_pack.expansionPackName }}</h4>
         </div>
+        <div class="carousel">
+            <!--
+    <div class="carousel-images">
+        {% for image in expansion_pack.images %}
+            <img
+                src="{{ asset('img/expansion-pack/' ~ image.filename) }}"
+                alt="{{ expansion_pack.expansionPackName }}"
+                class="carousel-image"
+            >
+        {% endfor %}
+    </div>
 
-        <div class="action">
-            <a href="{{ path('app_expansion_pack_index') }}">Retour</a>
-            {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('app_expansion_pack_edit', {'id': expansion_pack.id}) }}">Modifier</a>
-                {{ include('expansion_pack/_delete_form.html.twig') }}
-            {% endif %}
-        </div>
+
+    
+							<td>
+								{% if book.photo %}
+									<img src="{{ asset('uploads/photos/' ~ book.photo) }}" alt="{{ book.title }}" class="img-fluid rounded" style="max-height: 300px;">
+								{% else %}
+									<span class="text-muted fst-italic">Aucune photo disponible</span>
+								{% endif %}
+							</td>
+-->
+            <button class="carousel-prev" type="button">
+                ‹
+            </button>
+
+            <div class="action">
+                <a href="{{ path('app_expansion_pack_index') }}">Retour</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_expansion_pack_edit', {'id': expansion_pack.id}) }}">Modifier</a>
+                    {{ include('expansion_pack/_delete_form.html.twig') }}
+                {% endif %}
+            </div>
 {% endblock %}

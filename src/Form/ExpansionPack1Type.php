@@ -14,6 +14,9 @@ class ExpansionPack1Type extends AbstractType
         $builder
             ->add('expansion_pack_name', null, [
                 'label' => 'Nom de l\'extension',
+            ])
+            ->add('expansion_pack_icon', null, [
+                'label' => 'Photo',
             ]);
     }
 
