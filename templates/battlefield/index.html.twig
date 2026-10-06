@@ -29,6 +29,7 @@
                             <td class="table-link">
                                 <a href="{{ path('app_battlefield_show', {'id': battlefield.id}) }}">Détails</a>
                                 <a href="{{ path('app_battlefield_edit', {'id': battlefield.id}) }}">Modifier</a>
+                                {{ include('battlefield/_delete_form.html.twig') }}
                             </td>
                         </tr>
                     {% else %}

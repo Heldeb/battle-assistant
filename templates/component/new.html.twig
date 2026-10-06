@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Component{% endblock %}
+{% block title %}Nouveau matériel{% endblock %}
 
 {% block body %}
-    <h1>Create new Component</h1>
+    <div class="subtitle">
+        <h2>Ajouter un nouveau matériel</h2>
+    </div>
 
     {{ include('component/_form.html.twig') }}
 
-    <a href="{{ path('app_component_index') }}">back to list</a>
+    <a href="{{ path('app_component_index') }}">Retour</a>
 {% endblock %}

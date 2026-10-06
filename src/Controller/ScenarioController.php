@@ -72,7 +72,6 @@ final class ScenarioController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $scenarioService->update($scenario);
-
             return $this->redirectToRoute('app_scenario_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -15,23 +15,45 @@ class ComponentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('component_name')
-            ->add('component_type')
-            ->add('component_subcategory')
-            ->add('movement_rules')
-            ->add('attack_rules')
-            ->add('protection_rules')
-            ->add('line_of_sight_rules')
-            ->add('component_icon')
-            ->add('component_side')
-            ->add('component_description')
+            ->add('component_name', null, [
+                'label' => 'Nom du matériel',
+            ])
+            ->add('component_type', null, [
+                'label' => 'Type de matériel',
+            ])
+            ->add('component_subcategory', null, [
+                'label' => 'Sous-catégorie',
+            ])
+            ->add('movement_rules', null, [
+                'label' => 'Déplacement',
+            ])
+            ->add('attack_rules', null, [
+                'label' => 'Attaques',
+            ])
+            ->add('protection_rules', null, [
+                'label' => 'Protection',
+            ])
+            ->add('line_of_sight_rules', null, [
+                'label' => 'Ligne de mire',
+            ])
+            ->add('component_icon', null, [
+                'label' => 'Photo',
+            ])
+            ->add('component_side', null, [
+                'label' => 'Camp',
+            ])
+            ->add('component_description', null, [
+                'label' => 'Description',
+            ])
             ->add('expansion_pack', EntityType::class, [
                 'class' => ExpansionPack::class,
-                'choice_label' => 'id',
+                'label' => 'Extension',
+                'choice_label' => 'expansion_pack_name',
             ])
             ->add('battlefields', EntityType::class, [
                 'class' => Battlefield::class,
-                'choice_label' => 'id',
+                'label' => 'Extension',
+                'choice_label' => 'battlefield_type',
                 'multiple' => true,
             ])
         ;

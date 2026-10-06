@@ -1,62 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Component{% endblock %}
+{% block title %}{{ component.componentName }}{% endblock %}
 
 {% block body %}
-    <h1>Component</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ component.id }}</td>
-            </tr>
-            <tr>
-                <th>Component_name</th>
-                <td>{{ component.componentName }}</td>
-            </tr>
-            <tr>
-                <th>Component_type</th>
-                <td>{{ component.componentType }}</td>
-            </tr>
-            <tr>
-                <th>Subcategory</th>
-                <td>{{ component.subcategory }}</td>
-            </tr>
-            <tr>
-                <th>Movement_rules</th>
-                <td>{{ component.movementRules }}</td>
-            </tr>
-            <tr>
-                <th>Attack_rules</th>
-                <td>{{ component.attackRules }}</td>
-            </tr>
-            <tr>
-                <th>Protection_rules</th>
-                <td>{{ component.protectionRules }}</td>
-            </tr>
-            <tr>
-                <th>Line_of_sight_rules</th>
-                <td>{{ component.lineOfSightRules }}</td>
-            </tr>
-            <tr>
-                <th>Component_icon</th>
-                <td>{{ component.componentIcon }}</td>
-            </tr>
-            <tr>
-                <th>Side</th>
-                <td>{{ component.side }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ component.Description }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="content">
 
-    <a href="{{ path('app_component_index') }}">back to list</a>
+        <div class="subtitle">
+            <h2>Matériel</h2>
+        </div>
 
-    <a href="{{ path('app_component_edit', {'id': component.id}) }}">edit</a>
+        <div class="action">
+            <a href="{{ path('app_component_index') }}">Retour</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_component_edit', {'id': component.id}) }}">Modifier</a>
+                {{ include('component/_delete_form.html.twig') }}
+            {% endif %}
+        </div>
 
-    {{ include('component/_delete_form.html.twig') }}
+        <div class="subtitle">
+            <h4 class="table-detail-name">{{ component.componentName }}</h4>
+        </div>
+		
+        <div class="grid-container">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th class="table-detail-label">Nom du matériel</th>
+                        <td>{{ component.componentName }}</td>
+                    </tr>
+                    <tr>
+                        <th class="table-detail-label">Type de matériel</th>
+                        <td class="table-detail-cell">{{ component.componentType }}</td>
+                    </tr>
+                    <tr>
+                        <th class="table-detail-label">Sous-catégorie</th>
+                        <td class="table-detail-cell">{{ component.componentSubcategory }}</td>
+                    </tr>
+                    <tr>
+                        <th class="table-detail-label">Déplacement</th>
+                        <td class="table-detail-cell">{{ component.movementRules }}</td>
+                    </tr>
+                    <tr>
+                        <th class="table-detail-label">Attaques</th>
+                        <td class="table-detail-cell">{{ component.attackRules }}</td>
+                    </tr>
+                    <tr>
+                        <th class="table-detail-label">Protection</th>
+                        <td class="table-detail-cell">{{ component.protectionRules }}</td>
+                    </tr>
+                    <tr>
+                        <th class="table-detail-label">Ligne de mire</th>
+                        <td class="table-detail-cell">{{ component.lineOfSightRules }}</td>
+                    </tr>
+                    <tr>
+                        <th class="table-detail-label">Photo</th>
+                        <td class="table-detail-cell">{{ component.componentIcon }}</td>
+                    </tr>
+                    <tr>
+                        <th class="table-detail-label">Camp</th>
+                        <td>{{ component.componentSide }}</td>
+                    </tr>
+                    <tr>
+                        <th class="table-detail-label">Description</th>
+                        <td class="table-detail-cell">{{ component.componentDescription }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+		
+        <div class="action">
+            <a href="{{ path('app_component_index') }}">Retour</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_component_edit', {'id': component.id}) }}">Modifier</a>
+                {{ include('component/_delete_form.html.twig') }}
+            {% endif %}
+        </div>
 {% endblock %}

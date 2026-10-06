@@ -1,53 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Component index{% endblock %}
+{% block title %}Liste du matériel{% endblock %}
 
 {% block body %}
-    <h1>Component index</h1>
+    <div class="content">
+        <div class="subtitle">
+            <h2>Liste du matériel</h2>
+        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Component_name</th>
-                <th>Component_type</th>
-                <th>Subcategory</th>
-                <th>Movement_rules</th>
-                <th>Attack_rules</th>
-                <th>Protection_rules</th>
-                <th>Line_of_sight_rules</th>
-                <th>Component_icon</th>
-                <th>Side</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for component in components %}
-            <tr>
-                <td>{{ component.id }}</td>
-                <td>{{ component.componentName }}</td>
-                <td>{{ component.componentType }}</td>
-                <td>{{ component.subcategory }}</td>
-                <td>{{ component.movementRules }}</td>
-                <td>{{ component.attackRules }}</td>
-                <td>{{ component.protectionRules }}</td>
-                <td>{{ component.lineOfSightRules }}</td>
-                <td>{{ component.componentIcon }}</td>
-                <td>{{ component.side }}</td>
-                <td>{{ component.Description }}</td>
-                <td>
-                    <a href="{{ path('app_component_show', {'id': component.id}) }}">show</a>
-                    <a href="{{ path('app_component_edit', {'id': component.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="12">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="action">
+            <a href="{{ path('app_home') }}">Retour</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_component_new') }}">Nouveau</a>
+            {% endif %}
+        </div>
 
-    <a href="{{ path('app_component_new') }}">Create new</a>
+        <div class="grid-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table-label">Nom du matériel</th>
+                        <th class="table-label">Type de matériel</th>
+                        <th class="table-label">Sous-catégorie</th>
+                        <th class="table-label">Déplacement</th>
+                        <th class="table-label">Attaque</th>
+                        <th class="table-label">Protection</th>
+                        <th class="table-label">Ligne de mire</th>
+                        <th class="table-label">Image</th>
+                        <th class="table-label">Camp</th>
+                        <th class="table-label">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for component in components %}
+                        <tr>
+                            <td class="table-cell">{{ component.id }}</td>
+                            <td class="table-cell">{{ component.componentName }}</td>
+                            <td class="table-cell">{{ component.componentType }}</td>
+                            <td class="table-cell">{{ component.componentSubcategory }}</td>
+                            <td class="table-cell">{{ component.movementRules }}</td>
+                            <td class="table-cell">{{ component.attackRules }}</td>
+                            <td class="table-cell">{{ component.protectionRules }}</td>
+                            <td class="table-cell">{{ component.lineOfSightRules }}</td>
+                            <td class="table-cell">{{ component.componentIcon }}</td>
+                            <td class="table-cell">{{ component.componentSide }}</td>
+                            <td class="table-cell">{{ component.componentDescription }}</td>
+                            <td class="table-link">
+                                <a href="{{ path('app_component_show', {'id': component.id}) }}">Détails</a>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('app_component_edit', {'id': component.id}) }}">Modifier</a>
+                                    {{ include('component/_delete_form.html.twig') }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>Base de données vide</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="action">
+            <a href="{{ path('app_home') }}">Retour</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_component_new') }}">Nouveau</a>
+            {% endif %}
+        </div>
+    </div>
+
 {% endblock %}
