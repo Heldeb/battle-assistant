@@ -15,14 +15,18 @@ class BattlefieldType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('battlefield_type')
+            ->add('battlefield_type', null, [
+                'label' => 'Type de plateau',
+            ])
             ->add('expansion_pack', EntityType::class, [
                 'class' => ExpansionPack::class,
-                'choice_label' => 'id',
+                'label' => 'Extension',
+                'choice_label' => 'expansion_pack_name',
             ])
             ->add('component', EntityType::class, [
                 'class' => Component::class,
-                'choice_label' => 'id',
+                'label' => 'Matériel(s)',
+                'choice_label' => 'component_name',
                 'multiple' => true,
             ])
         ;

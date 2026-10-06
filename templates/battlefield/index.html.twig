@@ -1,35 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Battlefield index{% endblock %}
+{% block title %}Liste des plateaux{% endblock %}
 
 {% block body %}
-    <h1>Battlefield index</h1>
+    <div class="content">
+        <div class="subtitle">
+            <h2>Liste des plateaux</h2>
+        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Battlefield_type</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for battlefield in battlefields %}
-            <tr>
-                <td>{{ battlefield.id }}</td>
-                <td>{{ battlefield.battlefieldType }}</td>
-                <td>
-                    <a href="{{ path('app_battlefield_show', {'id': battlefield.id}) }}">show</a>
-                    <a href="{{ path('app_battlefield_edit', {'id': battlefield.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="action">
+            <a href="{{ path('app_home') }}">Retour</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_battlefield_new') }}">Nouveau</a>
+            {% endif %}
+        </div>
 
-    <a href="{{ path('app_battlefield_new') }}">Create new</a>
+        <div class="grid-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table-label">Type de plateau</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for battlefield in battlefields %}
+                        <tr>
+                            <td class="table-cell">{{ battlefield.battlefieldType }}</td>
+                            <td class="table-link">
+                                <a href="{{ path('app_battlefield_show', {'id': battlefield.id}) }}">Détails</a>
+                                <a href="{{ path('app_battlefield_edit', {'id': battlefield.id}) }}">Modifier</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>Base de données vide</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="action">
+            <a href="{{ path('app_home') }}">Retour</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_battlefield_new') }}">Nouveau</a>
+            {% endif %}
+        </div>
+
 {% endblock %}

@@ -9,7 +9,7 @@
         </div>
 
         <div class="action">
-            <a href="{{ path('app_expansion_pack_index') }}">Retour</a>
+            <a href="{{ path('app_home') }}">Retour</a>
             {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('app_expansion_pack_new') }}">Nouveau</a>
             {% endif %}
@@ -44,7 +44,7 @@
         </div>
 		
         <div class="action">
-            <a href="{{ path('app_expansion_pack_index') }}">Retour</a>
+            <a href="{{ path('app_home') }}">Retour</a>
             {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('app_expansion_pack_new') }}">Nouveau</a>
             {% endif %}

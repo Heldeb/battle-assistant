@@ -7,9 +7,14 @@
         <div class="subtitle">
             <h2>Liste de règles</h2>
         </div>
-        {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('app_rule_new') }}">Nouveau</a>
-        {% endif %}
+
+        <div class="action">
+            <a href="{{ path('app_home') }}">Retour</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_rule_new') }}">Nouveau</a>
+            {% endif %}
+        </div>
+
         <div class="grid-container">
             <table class="table">
                 <thead>
@@ -40,6 +45,12 @@
                     {% endfor %}
                 </tbody>
             </table>
+        </div>
+        <div class="action">
+            <a href="{{ path('app_home') }}">Retour</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_rule_new') }}">Nouveau</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

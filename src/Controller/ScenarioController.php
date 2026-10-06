@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 // ========== SCENARIO_VIEW ==========
+
 #[Route('/scenario')]
 final class ScenarioController extends AbstractController
 {
